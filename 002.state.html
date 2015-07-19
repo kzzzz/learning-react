@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="./bower_components/react/react.js"></script>
+    <script src="./bower_components/react/JSXTransformer.js"></script>
+    <script type="text/jsx">
+
+        var App = React.createClass(
+                {
+                    getInitialState: function () {
+                        return {
+                            name: 'intial name',
+                            id: 0
+                        }
+                    },
+                    updateName: function (e) {
+                        var name = e.target.value;
+                        this.setState({name: name});
+                    },
+                    render: function () {
+                        return (
+                                <h1>
+                                    <p>Hello, {this.state.name}!</p>
+                                    <p>
+                                        <input type="text" onChange={this.updateName}></input>
+                                    </p>
+                                </h1>
+                        )
+                    }
+                }
+        );
+
+        React.render(<App />,
+                document.body);
+
+    </script>
+</head>
+<body>
+</body>
+</html>
