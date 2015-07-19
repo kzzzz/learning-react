@@ -42,7 +42,7 @@
                     render: function () {
                         return (
                                 <div>
-                                    <input ref="range" type="range" onChange={this.props.update}></input>
+                                    <input ref="range" type="range" min="0" max="255" onChange={this.props.update}></input>
                                 </div>
                         )
                     }
