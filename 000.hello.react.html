@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="./bower_components/react/react.js"></script>
+    <script src="./bower_components/react/JSXTransformer.js"></script>
+    <script type="text/jsx">
+
+        var HelloWorld = React.createClass(
+                {
+                    render: function () {
+                        return (
+                                <h1>
+                                    Hello React!
+                                </h1>
+                        )
+                    }
+                }
+        );
+
+        React.render(<HelloWorld />,
+                document.getElementById("container"));
+
+    </script>
+</head>
+<body>
+<div id="container"></div>
+</body>
+</html>

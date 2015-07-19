@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="./bower_components/react/react.js"></script>
+    <script src="./bower_components/react/JSXTransformer.js"></script>
+    <script type="text/jsx">
+
+        var Greeting = React.createClass(
+                {
+                    getDefaultProps: function () {
+                        return {
+                            name: 'Ludwig',
+                            times: 1
+                        }
+                    },
+                    propTypes: {
+                        name: React.PropTypes.string.isRequired,
+                        times: React.PropTypes.number
+                    },
+                    render: function () {
+                        return (
+                                <h1>
+                                    <p>Hello, {this.props.name}!</p>
+                                    <p>Greet {this.props.times} times</p>
+                                </h1>
+                        )
+                    }
+                }
+        );
+
+        React.render(<Greeting name="John Doe" times="3"/>,
+                document.body);
+
+    </script>
+</head>
+<body>
+</body>
+</html>
