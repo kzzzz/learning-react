@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.css"/>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/react/react.js"></script>
+    <script src="bower_components/react/JSXTransformer.js"></script>
+    <script type="text/jsx">
+        var ReactMixin = {
+            componentWillMount: function () {
+                console.log("component will mount");
+            },
+            getInitialState: function () {
+                return {
+                    count: 0
+                }
+            },
+            incrementCount: function () {
+                console.log(this.state.count);
+                this.setState({
+                    count: this.state.count + 1
+                })
+            }
+        };
+
+        var App = React.createClass(
+                {
+                    render: function () {
+                        return (
+                                <div>
+                                    <ButtonComp txt="this is a button"/>
+                                    <InputComp txt="this is a input"/>
+                                </div>
+                        )
+                    }
+                }
+        );
+
+        var ButtonComp = React.createClass({
+                    mixins: [ReactMixin],
+                    render: function () {
+                        return (
+                                <button onClick={this.incrementCount}>{this.props.txt} - {this.state.count}</button>
+                        )
+                    }
+                }
+        );
+
+        var InputComp = React.createClass({
+            mixins: [ReactMixin],
+            componentWillMount: function () {
+                // this will merge with comonentWillMount in the mixin
+                setInterval(this.incrementCount, 1000);
+            },
+            render: function () {
+                return (
+                        <input value={this.props.txt + " - " + this.state.count}/>
+                )
+            }
+        });
+
+        React.render(<App />,
+                document.getElementById("myPanel"));
+
+    </script>
+</head>
+<body>
+<div id="container" class="container">
+    <h1>Learning React</h1>
+
+    <div id="myPanel"></div>
+</div>
+</body>
+</html>
