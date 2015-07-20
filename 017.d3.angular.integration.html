@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="./bower_components/react/react-with-addons.js"></script>
+    <script src="./bower_components/react/JSXTransformer.js"></script>
+    <script type="text/jsx">
+
+        var App = React.createClass(
+                {
+                    mixins: [React.addons.LinkedStateMixin],
+                    getInitialState: function () {
+                        return {
+                            voornaam: "",
+                            tussenvoegsel: "",
+                            achternaam: ""
+                        }
+                    },
+                    render: function () {
+                        return (
+                                <form>
+                                    <div>
+                                        <input valueLink={this.linkState("voornaam")} type="text" placeholder="Voornaam"/>
+                                        <labe>{this.state.voornaam}</labe>
+                                    </div>
+                                    <div>
+                                        <input valueLink={this.linkState("tussenvoegsel")} type="text" placeholder="Tussenvoegsel"/>
+                                        <labe>{this.state.tussenvoegsel}</labe>
+                                    </div>
+                                    <div>
+                                        <input valueLink={this.linkState("achternaam")} type="text" placeholder="Acthernaame"/>
+                                        <labe>{this.state.achternaam}</labe>
+                                    </div>
+                                </form>
+                        )
+                    }
+                }
+        );
+
+        React.render(<App />, document.getElementById("myPanel"));
+
+    </script>
+</head>
+<body>
+<div id="container" class="container">
+    <h1>Learning React</h1>
+
+    <div id="myPanel"></div>
+</div>
+</body>
+</html>
