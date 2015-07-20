@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="./bower_components/react/react.js"></script>
+    <script src="./bower_components/react/JSXTransformer.js"></script>
+    <script type="text/jsx">
+
+        var App = React.createClass(
+                {
+                    getInitialState: function () {
+                        return {
+                            red: 0,
+                            green: 0,
+                            blue: 0
+                        }
+                    },
+                    update: function () {
+                        this.setState({
+                            red: this.refs.red.refs.range.getDOMNode().value
+                        });
+                    },
+                    render: function () {
+                        return (
+                                <div>
+                                    <NumberInput ref="red" min={0} max={250} step={1} val={+this.state.red}
+                                                 update={this.update} label="Red"/>
+                                </div>
+                        )
+                    }
+                }
+        );
+
+        var NumberInput = React.createClass({
+                    propTypes: {
+                        min: React.PropTypes.number,
+                        max: React.PropTypes.number,
+                        step: React.PropTypes.number,
+                        val: React.PropTypes.number,
+                        label: React.PropTypes.string,
+                        update: React.PropTypes.func.isRequired,
+                        type: React.PropTypes.oneOf(['number', 'range'])
+                    },
+                    getDefaultProps: function () {
+                        return {
+                            min: null,
+                            max: null,
+                            step: 1,
+                            label: "",
+                            type: "range"
+                        }
+                    },
+                    render: function () {
+                        var label = this.props.label !== ""
+                                ? <label>{this.props.label}: {this.props.val}</label>
+                                : "";
+                        return (
+                                <div>
+                                    <input ref="range"
+                                           type={this.props.type}
+                                           min={this.props.min}
+                                           max={this.props.max}
+                                           step={this.props.step}
+                                           defaultValue={this.props.val}
+                                           onChange={this.props.update}/>
+                                    {label}
+                                </div>
+                        )
+                    }
+                }
+        );
+
+        React.render(<App />, document.getElementById("myPanel"));
+
+    </script>
+</head>
+<body>
+<div id="container" class="container">
+    <h1>Learning React</h1>
+
+    <div id="myPanel"></div>
+</div>
+</body>
+</html>
